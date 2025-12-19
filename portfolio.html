@@ -1,144 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('background.jpg') no-repeat center center fixed; /* Background image */
-            background-size: cover; /* Make the image cover the entire screen */
-            color: #333; /* Default text color */
-        }
-        body {
-            background-color: #f0f0f0;  /* Light gray background color */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-}
-        body{
-            background-color: lightblue;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sriram | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #0f172a; color: #e5e7eb; line-height: 1.6; scroll-behavior: smooth; }
 
-        header {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent navbar */
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #575757;
-        }
-        section {
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .about, .projects, .contact {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 800px;
-        }
-        .about h2, .projects h2, .contact h2 {
-            margin-top: 0;
-        }
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
+    /* Navbar */
+    header { position: fixed; top: 0; width: 100%; background: rgba(15,23,42,0.85); backdrop-filter: blur(12px); z-index: 100; }
+    nav { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem; }
+    nav h1 { font-size: 1.4rem; font-weight: 700; color: #38bdf8; }
+    nav ul { display: flex; list-style: none; gap: 1.5rem; }
+    nav ul li a { color: #e5e7eb; text-decoration: none; font-weight: 500; position: relative; }
+    nav ul li a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: #38bdf8; transition: 0.3s; }
+    nav ul li a:hover::after { width: 100%; }
+
+    /* Hero */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; background: radial-gradient(circle at top, #1e293b, #0f172a); }
+    .hero h2 { font-size: 2.6rem; margin-bottom: 1rem; animation: fadeDown 1s ease; }
+    .hero span { color: #38bdf8; }
+    .hero p { max-width: 650px; margin: auto; margin-bottom: 1.8rem; opacity: 0.9; animation: fadeUp 1.2s ease; }
+
+    .btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: 30px; background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #020617; font-weight: 600; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(56,189,248,0.4); }
+
+    /* Sections */
+    section { max-width: 1100px; margin: auto; padding: 5rem 1.5rem; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+    section.show { opacity: 1; transform: translateY(0); }
+
+    section h3 { font-size: 2rem; margin-bottom: 2rem; text-align: center; position: relative; }
+    section h3::after { content: ''; display: block; width: 60px; height: 4px; background: #38bdf8; margin: 0.5rem auto; border-radius: 2px; }
+
+    /* About */
+    .about p { max-width: 820px; margin: auto; text-align: center; font-size: 1.05rem; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.2rem; }
+    .skill { background: linear-gradient(145deg, #020617, #020617); padding: 1.2rem; border-radius: 14px; text-align: center; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; }
+    .skill:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 10px 25px rgba(56,189,248,0.25); }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.6rem; }
+    .project { background: #020617; padding: 1.6rem; border-radius: 18px; transition: transform 0.35s, box-shadow 0.35s; }
+    .project:hover { transform: translateY(-10px); box-shadow: 0 14px 35px rgba(56,189,248,0.25); }
+    .project h4 { margin-bottom: 0.6rem; color: #38bdf8; }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact a { color: #38bdf8; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer { text-align: center; padding: 1.5rem; background: #020617; font-size: 0.9rem; opacity: 0.85; }
+
+    /* Animations */
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hero h2 { font-size: 2.1rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>SRIRAM.K</h1>
-        <p>Engineer | Designer | Content Creator</p>
-    </header>
+<header>
+  <nav>
+    <h1>Sriram</h1>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="#video">Video</a>
-    </nav>
+<main>
+  <section class="hero" id="home">
+    <div>
+      <h2>Hi, I'm <span>Sriram Kamaraj</span></h2>
+      <p>An Electronics & Communication Engineering student and aspiring Web Developer creating clean, responsive and user-friendly websites.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
 
-    <section id="about" class="about">
-        <img src="me1.jpg" style="width:200px; border-radius:50%;" alt="Profile Picture"/>
-        <h2>About Me</h2>
-        <p>
-            I am a lean, ambitious first-year ECE (Electronics and Communication Engineering) student.
-            <br><br>
-            <strong>Skills & Interests:</strong>
-            <br>Content Creator: Actively involved in creating engaging and visually appealing content.
-            <br>Proficient in development and exploring opportunities in electronics.
-        </p>
-    </section>
+  <section class="about" id="about">
+    <h3>About Me</h3>
+    <p>
+      I am Sriram Kamaraj, a Bachelor of Engineering student in Electronics and Communication Engineering at Sri Eshwar College of Engineering, Tamil Nadu.
+      I am passionate about technology, web development, and building user-friendly digital experiences.
+    </p>
+  </section>
 
-    <section id="projects" class="projects">
-        <h2>My Projects</h2>
-        <div>
-            <h3>Project 1</h3>
-            <p>I developed a code for an inventory management system using C language.</p>
-        </div>
-        <div>
-            <h3>Project 2</h3>
-            <p>Ola Air Bus Poster</p>
-        </div>
-        <div>
-            <h3>Project 3</h3>
-            <p>I created a portfolio for myself.</p>
-        </div>
-    </section>
+  <section id="skills">
+    <h3>Skills</h3>
+    <div class="skills-grid">
+      <div class="skill">Basic C</div>
+      <div class="skill">Basic Python</div>
+      <div class="skill">Basic Circuit Analysis</div>
+      <div class="skill">Digital Electronics</div>
+      <div class="skill">HTML (Basics)</div>
+    </div>
+  </section>
 
-    <section id="video" class="video-section">
-        <h2>Watch My Video</h2>
-        <p>Here's a video showcasing some of my work and skills:</p>
-        <video width="560" height="315" controls>
-            <source src="mevi.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </section>
+  <section id="projects">
+    <h3>Projects</h3>
+    <div class="projects">
+      <div class="project">
+        <h4>Electric Pole Problem</h4>
+        <p>Analyzed and solved an electric pole related engineering problem focusing on safety, circuit behavior, and real-world electrical conditions.</p>
+      </div>
+      <div class="project">
+        <h4>Mini Electronics Projects</h4>
+        <p>Worked on small academic electronics projects involving basic circuit analysis and digital electronics concepts.</p>
+      </div>
+    </div>
+  </section>
 
-    <p style="font-size: 25px; text-align: center;">This content was created by me for a shorts video</p>
-    <center>
-        <img src="po.png" style="width:500px" alt="Sample Content"/>
-    </center>
+  <section class="contact" id="contact">
+    <h3>Contact</h3>
+    <p>Email: sriramkamaraj1804@gmail.com</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/sriram-kamaraj-9763b3319" target="_blank">linkedin.com/in/sriram-kamaraj</a></p>
+    <p>Tamil Nadu, India</p>
+  </section>
+</main>
 
-    <section id="contact" class="contact">
-        <h2>Contact Me</h2>
-        <p>If you'd like to get in touch, feel free to reach out to me through the following channels:</p>
-        <ul>
-            <li>Email: sriramkamaraj1804@gmail.com</li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/feed/" target="_blank">Sriram Kamaraj</a></li>
-            <li>GitHub: <a href="https://github.com/" target="_blank">Sriram Kamaraj</a></li>
-        </ul>
-    </section>
+<footer>
+  <p>© 2025 Sriram Kamaraj. All rights reserved.</p>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 SRIRAM.K. All rights reserved.</p>
-    </footer>
+<script>
+  // Reveal sections on scroll
+  const sections = document.querySelectorAll('section');
 
+  const revealOnScroll = () => {
+    const trigger = window.innerHeight * 0.85;
+    sections.forEach(sec => {
+      const top = sec.getBoundingClientRect().top;
+      if (top < trigger) sec.classList.add('show');
+    });
+  };
+
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+
+  // Simple typing effect for hero text
+  const text = "Electronics & Communication Engineering Student";
+  const heroP = document.querySelector('.hero p');
+  let i = 0;
+  heroP.textContent = '';
+
+  function typeEffect() {
+    if (i < text.length) {
+      heroP.textContent += text.charAt(i);
+      i++;
+      setTimeout(typeEffect, 50);
+    }
+  }
+  typeEffect();
+</script>
 </body>
 </html>
